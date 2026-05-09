@@ -4,100 +4,172 @@
   <meta charset="utf-8">
   <title>Procedure (QP)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     body {
-      font-family: Tahoma, Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 20px;
+      font-family: 'Prompt', sans-serif;
+      background: linear-gradient(135deg, #eef2f7, #f9fbff);
+      margin: 0;
+      padding: 30px;
+      color: #333;
     }
-    h1 { color: #003366; }
-    ul { list-style: none; padding: 0; }
-    li {
+
+    h1 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
       background: #ffffff;
-      margin-bottom: 10px;
-      padding: 12px;
-      border-radius: 8px;
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
     }
-    a {
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .card a {
       text-decoration: none;
-      color: #000;
-      font-weight: bold;
-      display: block;
+      color: #003366;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    a:hover { color: #0056b3; }
+
+    .icon {
+      font-size: 22px;
+      color: #1e88e5;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
+    }
   </style>
 </head>
 
 <body>
 
-<h1>Procedure (QP)</h1>
+<div class="container">
+  <h1><i class="fa-solid fa-folder-open"></i> Procedure (QP)</h1>
 
-<ul>
+  <div class="grid">
 
-<li><a href="QP-020-VV(01) การบ่งชี้ และสอบกลับได้ของสินค้า.pdf" target="_blank">
-QP-020-VV(01) การบ่งชี้ และสอบกลับได้ของสินค้า</a></li>
+    <div class="card"><a href="QP-020-VV(01) การบ่งชี้ และสอบกลับได้ของสินค้า.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-020 การบ่งชี้ และสอบกลับได้ของสินค้า
+    </a></div>
 
-<li><a href="QP-021-VV(02) การควบคุมสินค้าที่ไม่เป็นไปตามที่กําหนด.pdf" target="_blank">
-QP-021-VV(02) การควบคุมสินค้าที่ไม่เป็นไปตามที่กําหนด</a></li>
+    <div class="card"><a href="QP-021-VV(02) การควบคุมสินค้าที่ไม่เป็นไปตามที่กําหนด.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-021 การควบคุมสินค้าที่ไม่เป็นไปตามที่กำหนด
+    </a></div>
 
-<li><a href="QP-022-VV(00) การดูแลทรัพย์สินของลูกค้า.pdf" target="_blank">
-QP-022-VV(00) การดูแลทรัพย์สินของลูกค้า</a></li>
+    <div class="card"><a href="QP-022-VV(00) การดูแลทรัพย์สินของลูกค้า.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-022 การดูแลทรัพย์สินของลูกค้า
+    </a></div>
 
-<li><a href="QP-023-VV(00) การถนอมรักษา และป้องกันสินค้า .pdf" target="_blank">
-QP-023-VV(00) การถนอมรักษา และป้องกันสินค้า</a></li>
+    <div class="card"><a href="QP-023-VV(00) การถนอมรักษา และป้องกันสินค้า .pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-023 การถนอมรักษาและป้องกันสินค้า
+    </a></div>
 
-<li><a href="QP-024-VV(02) การตรวจสอบ และแจ้งเข้าสินค้า.pdf" target="_blank">
-QP-024-VV(02) การตรวจสอบ และแจ้งเข้าสินค้า</a></li>
+    <div class="card"><a href="QP-024-VV(02) การตรวจสอบ และแจ้งเข้าสินค้า.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-024 การตรวจสอบ และแจ้งเข้าสินค้า
+    </a></div>
 
-<li><a href="QP-025-VV(00) การเคลื่อนย้ายสินค้า.pdf" target="_blank">
-QP-025-VV(00) การเคลื่อนย้ายสินค้า</a></li>
+    <div class="card"><a href="QP-025-VV(00) การเคลื่อนย้ายสินค้า.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-025 การเคลื่อนย้ายสินค้า
+    </a></div>
 
-<li><a href="QP-026-VV(06) การจัดเก็บสินค้า.pdf" target="_blank">
-QP-026-VV(06) การจัดเก็บสินค้า</a></li>
+    <div class="card"><a href="QP-026-VV(06) การจัดเก็บสินค้า.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-026 การจัดเก็บสินค้า
+    </a></div>
 
-<li><a href="QP-027-VV(01) การตรวจสอบ และเบิกจ่ายสินค้า.pdf" target="_blank">
-QP-027-VV(01) การตรวจสอบ และเบิกจ่ายสินค้า</a></li>
+    <div class="card"><a href="QP-027-VV(01) การตรวจสอบ และเบิกจ่ายสินค้า.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-027 การตรวจสอบ และเบิกจ่ายสินค้า
+    </a></div>
 
-<li><a href="QP-028-VV(01) การควบคุมสัตว์พาหะ.pdf" target="_blank">
-QP-028-VV(01) การควบคุมสัตว์พาหะ</a></li>
+    <div class="card"><a href="QP-028-VV(01) การควบคุมสัตว์พาหะ.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-028 การควบคุมสัตว์พาหะ
+    </a></div>
 
-<li><a href="QP-029-VV(01) การควบคุมแก้ว กระจก และพลาสติกแข็ง.pdf" target="_blank">
-QP-029-VV(01) การควบคุมแก้ว กระจก และพลาสติกแข็ง</a></li>
+    <div class="card"><a href="QP-029-VV(01) การควบคุมแก้ว กระจก และพลาสติกแข็ง.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-029 การควบคุมแก้ว กระจก และพลาสติกแข็ง
+    </a></div>
 
-<li><a href="QP-030-VV(00) การควบคุมขยะ และของเสีย.pdf" target="_blank">
-QP-030-VV(00) การควบคุมขยะ และของเสีย</a></li>
+    <div class="card"><a href="QP-030-VV(00) การควบคุมขยะ และของเสีย.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-030 การควบคุมขยะและของเสีย
+    </a></div>
 
-<li><a href="QP-062-VV(00) การทำความสะอาดพื้นที่คลังสินค้า.pdf" target="_blank">
-QP-062-VV(00) การทำความสะอาดพื้นที่คลังสินค้า</a></li>
+    <div class="card"><a href="QP-062-VV(00) การทำความสะอาดพื้นที่คลังสินค้า.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-062 การทำความสะอาดพื้นที่คลังสินค้า
+    </a></div>
 
-<li><a href="QP-063-VV(00) การควบคุมสุขลักษณะส่วนบุคคล.pdf" target="_blank">
-QP-063-VV(00) การควบคุมสุขลักษณะส่วนบุคคล</a></li>
+    <div class="card"><a href="QP-063-VV(00) การควบคุมสุขลักษณะส่วนบุคคล.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-063 การควบคุมสุขลักษณะส่วนบุคคล
+    </a></div>
 
-<li><a href="QP-064-VV(01) การป้องกันการก่อการร้ายและการป้องกันสินค้าปลอมในวัตถุที่เติมในอาหารสัตว์.pdf" target="_blank">
-QP-064-VV(01) การป้องกันการก่อการร้ายและการป้องกันสินค้าปลอมในวัตถุที่เติมในอาหารสัตว์</a></li>
+    <div class="card"><a href="QP-064-VV(01) การป้องกันการก่อการร้ายและการป้องกันสินค้าปลอมในวัตถุที่เติมในอาหารสัตว์.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-064 การป้องกันการก่อการร้ายและสินค้าปลอม
+    </a></div>
 
-<li><a href="QP-067-VV(00) การจัดการผลิตภัณฑ์ส่งคืน.pdf" target="_blank">
-QP-067-VV(00) การจัดการผลิตภัณฑ์ส่งคืน</a></li>
+    <div class="card"><a href="QP-067-VV(00) การจัดการผลิตภัณฑ์ส่งคืน.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-067 การจัดการผลิตภัณฑ์ส่งคืน
+    </a></div>
 
-<li><a href="QP-068-VV(00) การจัดการผลิตภัณฑ์ที่ต้องส่งสัยว่าปลอม.pdf" target="_blank">
-QP-068-VV(00) การจัดการผลิตภัณฑ์ที่ต้องส่งสัยว่าปลอม</a></li>
+    <div class="card"><a href="QP-068-VV(00) การจัดการผลิตภัณฑ์ที่ต้องส่งสัยว่าปลอม.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-068 การจัดการผลิตภัณฑ์ต้องสงสัยว่าปลอม
+    </a></div>
 
-<li><a href="QP-069-VV(00) ขั้นตอนการขอผลิตสินค้าในโรงงาน.pdf" target="_blank">
-QP-069-VV(00) ขั้นตอนการขอผลิตสินค้าในโรงงาน</a></li>
+    <div class="card"><a href="QP-069-VV(00) ขั้นตอนการขอผลิตสินค้าในโรงงาน.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-069 ขั้นตอนการขอผลิตสินค้าในโรงงาน
+    </a></div>
 
-<li><a href="QP-070-VV(01) การจัดการความเบี่ยงเบนจากสภาวะที่กำหนด.pdf" target="_blank">
-QP-070-VV(01) การจัดการความเบี่ยงเบนจากสภาวะที่กำหนด</a></li>
+    <div class="card"><a href="QP-070-VV(01) การจัดการความเบี่ยงเบนจากสภาวะที่กำหนด.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-070 การจัดการความเบี่ยงเบนจากสภาวะที่กำหนด
+    </a></div>
 
-<li><a href="QP-071-VV(01) การประเมินลูกค้า.pdf" target="_blank">
-QP-071-VV(01) การประเมินลูกค้า</a></li>
+    <div class="card"><a href="QP-071-VV(01) การประเมินลูกค้า.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-071 การประเมินลูกค้า
+    </a></div>
 
-<li><a href="QP-072-VV(01) การทําลายยา.pdf" target="_blank">
-QP-072-VV(01) การทําลายยา</a></li>
+    <div class="card"><a href="QP-072-VV(01) การทําลายยา.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-072 การทำลายยา
+    </a></div>
 
-<li><a href="QP-073-VV (00) การควบคุมการเปลี่ยนแปลงในการกระจายยา.pdf" target="_blank">
-QP-073-VV (00) การควบคุมการเปลี่ยนแปลงในการกระจายยา</a></li>
+    <div class="card"><a href="QP-073-VV(00) การควบคุมการเปลี่ยนแปลงในการกระจายยา.pdf" target="_blank">
+      <i class="fa-solid fa-file-pdf icon"></i> QP-073 การควบคุมการเปลี่ยนแปลงในการกระจายยา
+    </a></div>
 
-</ul>
+  </div>
+
+  <footer>
+    © 2026 Quality Procedure System
+  </footer>
+</div>
 
 </body>
 </html>
