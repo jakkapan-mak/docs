@@ -5,68 +5,176 @@
 <title>Documentation Center</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
+:root{
+  --primary:#0d47a1;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box;}
+
 body{
-  font-family: Arial, sans-serif;
-  background:#f4f7fc;
   margin:0;
+  font-family:'Prompt',sans-serif;
+  background:var(--bg);
+  color:#333;
 }
+
 .container{
-  max-width:1000px;
+  max-width:1100px;
   margin:auto;
-  padding:40px 20px;
+  padding:50px 24px 80px;
 }
-h1{
-  color:#0d47a1;
+
+.header{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-bottom:10px;
 }
-.card{
-  background:#fff;
-  padding:20px;
+
+.logo{
+  width:52px;
+  height:52px;
   border-radius:12px;
-  margin:20px 0;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  background:linear-gradient(135deg,#2962ff,#0d47a1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:30px;
+  box-shadow:0 8px 20px rgba(13,71,161,.35);
 }
+
+h1{
+  margin:0;
+  font-weight:600;
+  color:var(--primary);
+}
+
+.subtitle{
+  margin:8px 0 40px;
+  line-height:1.6;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:20px;
+  padding:28px 26px;
+  box-shadow:var(--shadow);
+  transition:.3s ease;
+  border-left:6px solid transparent;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,.15);
+}
+
 .card a{
   text-decoration:none;
-  color:#0d47a1;
-  font-weight:600;
+  color:inherit;
 }
-footer{
-  text-align:center;
-  margin-top:40px;
+
+.card h3{
+  margin:0 0 10px;
+  font-size:20px;
+}
+
+.card p{
+  margin:0;
   color:#666;
+  font-size:15px;
+}
+
+.wi{border-color:#1e88e5;}
+.proc{border-color:#43a047;}
+.sds{border-color:#e53935;}
+.ctrl{border-color:#2e7d32;}
+
+.badge{
+  display:inline-block;
+  margin-bottom:12px;
+  padding:6px 14px;
+  font-size:13px;
+  border-radius:20px;
+  background:#eef2ff;
+  color:var(--primary);
+  font-weight:500;
+}
+
+footer{
+  margin-top:70px;
+  text-align:center;
   font-size:14px;
+  color:#777;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-<h1>📚 Documentation Center</h1>
-<p>ศูนย์รวมเอกสารมาตรฐาน<br>
-<strong>Procedure, SDS, ISO, WI และ Safety</strong></p>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">📚</div>
+    <div>
+      <h1>Documentation Center</h1>
+      <div class="subtitle">
+        ศูนย์รวมเอกสารมาตรฐาน<br>
+        <strong>Procedure, SDS, ISO, WI และ Safety</strong>
+      </div>
+    </div>
+  </div>
 
-<div class="card">
-  📘 <a href="Wi/index.html">Work Instruction (WI)</a>
-</div>
+  <!-- Cards -->
+  <div class="grid">
 
-<div class="card">
-  📗 <a href="procedure/index.html">Procedure</a>
-</div>
+    <div class="card wi">
+      <a href="Wi/index.html">
+        <span class="badge">Work Instruction</span>
+        <h3>📘 Work Instruction (WI)</h3>
+        <p></p>
+      </a>
+    </div>
 
-<div class="card">
-  📕 <a href="sds/index.html">Safety Data Sheet (SDS)</a>
-</div>
+    <div class="card proc">
+      <a href="procedure/index.html">
+        <span class="badge">Procedure</span>
+        <h3>📗 Procedure (QP)</h3>
+        <p></p>
+      </a>
+    </div>
 
-<div class="card">
-  ✅ <strong>Controlled Document</strong><br>
-  เอกสารทั้งหมดในระบบนี้เป็นเอกสารควบคุม
-</div>
+    <div class="card sds">
+      <a href="sds/index.html">
+        <span class="badge">Safety Data Shee</span>
+        <h3>📕 Safety Data Sheet (SDS)</h3>
+        <p></p>
+      </a>
+    </div>
 
-<footer>
-  Owner: VGD/S<br>
-</footer>
+ 
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    Owner: VGD/S<br>
+
+  </footer>
 
 </div>
 </body>
