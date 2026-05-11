@@ -6,9 +6,10 @@
 ---
 
 ## 📂 โครงสร้างเอกสาร
-- **WI/** – Work Instruction
-- **procedure/** – Procedure
-- **sds/** – Safety Data Sheet
+
+- 📘 [Work Instruction (WI)](Wi/index.html)
+- 📗 [Procedure](procedure/index.html)
+- 📕 [Safety Data Sheet (SDS)](sds/index.html)
 
 ---
 
