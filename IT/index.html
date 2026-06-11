@@ -23,10 +23,8 @@ body{
   background:linear-gradient(135deg,#eef3ff,#f9fbff);
   margin:0;
   padding:30px 18px;
-  color:#333;
 }
 
-/* ✅ ปุ่ม Home */
 .home-btn{
   position:absolute;
   top:20px;
@@ -36,10 +34,9 @@ body{
   padding:10px 16px;
   border-radius:999px;
   text-decoration:none;
-  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  box-shadow:0 6px 18px rgba(0,0,0,.15);
 }
 
-/* layout */
 .container{
   max-width:1200px;
   margin:auto;
@@ -47,12 +44,11 @@ body{
 
 header{
   text-align:center;
-  margin-bottom:32px;
+  margin-bottom:30px;
 }
 
 header h1{
   color:var(--primary);
-  margin-bottom:10px;
 }
 
 .search-box input{
@@ -63,7 +59,7 @@ header h1{
   border:1px solid #ccc;
 }
 
-/* ✅ GRID แบบ WI */
+/* ✅ WI STYLE */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -71,55 +67,48 @@ header h1{
   margin-top:25px;
 }
 
-/* ✅ CARD แบบ WI */
 .card{
   background:#fff;
   border-radius:16px;
-  padding:18px 22px;
+  padding:18px;
   box-shadow:0 8px 22px rgba(0,0,0,0.08);
-  transition:.35s;
+  transition:.3s;
 }
 
 .card:hover{
   transform:translateY(-6px);
-  box-shadow:0 16px 38px rgba(0,0,0,0.16);
+  box-shadow:0 16px 38px rgba(0,0,0,0.15);
 }
 
 .card a{
   text-decoration:none;
   display:flex;
-  align-items:flex-start;
-  gap:16px;
+  gap:14px;
   color:var(--primary);
   font-weight:500;
 }
 
-/* icon */
 .icon{
-  font-size:26px;
+  font-size:24px;
   color:var(--accent);
-  margin-top:3px;
 }
 
-/* text */
 .count{
   text-align:center;
   margin-top:10px;
   color:#666;
 }
 
-.footer{
+footer{
   text-align:center;
   margin-top:40px;
   color:#777;
 }
 </style>
-
 </head>
 
 <body>
 
-<!-- ✅ ปุ่มกลับหน้า Home -->
 <a href="https://jakkapan-mak.github.io/docs/" class="home-btn">
   <i class="fa-solid fa-house"></i> Home
 </a>
@@ -130,16 +119,15 @@ header h1{
 <h1><i class="fa-solid fa-server"></i> IT Documents</h1>
 
 <div class="search-box">
-<input type="text" id="search" placeholder="🔍 ค้นหาเอกสาร IT...">
+<input type="text" id="search" placeholder="🔍 ค้นหาไฟล์...">
 </div>
 
 <div class="count" id="fileCount">⏳ กำลังโหลด...</div>
-
 </header>
 
 <div class="grid" id="qpList"></div>
 
-<div class="footer">IT System - Document Center</div>
+<footer>IT System - Document Center</footer>
 
 </div>
 
@@ -150,42 +138,38 @@ const folder = "IT";
 const container = document.getElementById("qpList");
 const countBox = document.getElementById("fileCount");
 
-// ✅ icon อัตโนมัติ
+// ✅ ไอคอน
 function getIcon(name){
   name = name.toLowerCase();
-
   if(name.endsWith(".pdf")) return "fa-file-pdf";
   if(name.match(/\.(xls|xlsx)$/)) return "fa-file-excel";
   if(name.match(/\.(doc|docx)$/)) return "fa-file-word";
   if(name.match(/\.(ppt|pptx)$/)) return "fa-file-powerpoint";
-  if(name.match(/\.(jpg|jpeg|png|gif)$/)) return "fa-file-image";
-  if(name.match(/\.(zip|rar)$/)) return "fa-file-archive";
-
+  if(name.match(/\.(jpg|png|jpeg)$/)) return "fa-file-image";
   return "fa-file";
 }
 
 // ✅ โหลดไฟล์
 fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-.then(res=>{
-  if(!res.ok) throw new Error("โหลดไม่สำเร็จ");
-  return res.json();
-})
+.then(res=>res.json())
 .then(data=>{
 
   let count = 0;
 
   data.forEach(file=>{
 
-    // skip index + folder
     if(file.type !== "file" || file.name === "index.html") return;
 
     count++;
+
+    // ✅ 🔥 จุดสำคัญ (แก้ปัญหาคุณ)
+    const fileURL = `https://jakkapan-mak.github.io/docs/IT/${encodeURIComponent(file.name)}`;
 
     const card = document.createElement("div");
     card.className = "card";
 
     card.innerHTML = `
-      <a href="${file.download_url}" target} icon"></i>
+      <a href="${fileURL}" target="_con"></i>
         ${file.name.replace(/\.[^/.]+$/, "")}
       </a>
     `;
@@ -193,19 +177,14 @@ fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
     container.appendChild(card);
   });
 
-  countBox.innerText = count > 0
-    ? "📄 จำนวนเอกสารทั้งหมด: " + count + " รายการ"
-    : "❗ ยังไม่มีไฟล์";
+  countBox.innerText = "📄 จำนวนทั้งหมด: " + count + " รายการ";
 
-})
-.catch(err=>{
-  console.error(err);
-  countBox.innerText = "❌ โหลดข้อมูลไม่ได้";
 });
 
-// ✅ Search
+// ✅ search
 document.getElementById("search").addEventListener("keyup", function () {
   const keyword = this.value.toLowerCase();
+
   let visible = 0;
 
   document.querySelectorAll(".card").forEach(card => {
@@ -216,7 +195,7 @@ document.getElementById("search").addEventListener("keyup", function () {
 
   document.getElementById("fileCount").innerText =
     keyword ? "🔍 พบ " + visible + " รายการ"
-            : "📄 จำนวนเอกสารทั้งหมด: " + visible + " รายการ";
+            : "📄 จำนวนทั้งหมด: " + visible + " รายการ";
 });
 </script>
 
