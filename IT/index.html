@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
+<br><br>
 <meta charset="utf-8">
 <title>IT Documents</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Font -->
-https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap
+<!-- ✅ Font -->
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- ✅ Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body{
@@ -40,12 +40,14 @@ h1{
   border:1px solid #ccc;
 }
 
+/* grid */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:20px;
 }
 
+/* card */
 .card{
   background:#fff;
   padding:16px;
@@ -91,9 +93,7 @@ h1{
 <script>
 const repo = "jakkapan-mak/docs";
 const folder = "IT";
-
-// ✅ บังคับ branch
-const branch = "main"; // ถ้าไม่ขึ้น เปลี่ยนเป็น "master"
+const branch = "main"; // ถ้าไม่ขึ้น เปลี่ยนเป็น master
 
 const list = document.getElementById("qpList");
 const countBox = document.getElementById("fileCount");
@@ -114,18 +114,17 @@ function getIcon(name){
 // ✅ โหลดไฟล์
 fetch(`https://api.github.com/repos/${repo}/contents/${folder}?ref=${branch}`)
 .then(res => {
-  if(!res.ok) throw new Error("API error");
+  if (!res.ok) throw new Error();
   return res.json();
 })
 .then(data => {
-
-  if(!Array.isArray(data)) throw new Error("no data");
 
   let count = 0;
 
   data.forEach(file => {
 
-    if(file.type !== "file") return;
+    // ✅ ตัด folder + index.html
+    if(file.type !== "file" || file.name === "index.html") return;
 
     count++;
 
@@ -134,9 +133,9 @@ fetch(`https://api.github.com/repos/${repo}/contents/${folder}?ref=${branch}`)
     const card = document.createElement("div");
     card.className = "card";
 
+    // ✅ ✅ ✅ icon
     card.innerHTML = `
-      ${file.download_url}
-        <i class="fa-solid ${icon} icon" style="color:${color}"></i>
+      <a href="${filed ${icon} icon" style="color:${color}"></i>
         ${file.name.replace(/\.[^/.]+$/, "")}
       </a>
     `;
@@ -147,18 +146,8 @@ fetch(`https://api.github.com/repos/${repo}/contents/${folder}?ref=${branch}`)
   countBox.innerText = `📄 จำนวนทั้งหมด: ${count} รายการ`;
 
 })
-.catch(err => {
-  console.error(err);
-
-  // ✅ fallback แจ้งแบบชัด
-  countBox.innerHTML = `
-    ❌ โหลดไฟล์ไม่สำเร็จ<br>
-    <small>เช็ค:
-    <br>1. repo = ${repo}
-    <br>2. folder = ${folder}
-    <br>3. branch = ${branch}
-    </small>
-  `;
+.catch(()=>{
+  countBox.innerHTML = "❌ โหลดไฟล์ไม่สำเร็จ (ตรวจ repo / folder / branch)";
 });
 
 // ✅ search
