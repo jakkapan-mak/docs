@@ -76,7 +76,6 @@ header h1{
 }
 
 .icon{
-  color:var(--accent);
   font-size:22px;
 }
 
@@ -119,12 +118,27 @@ header h1{
 
 <script>
 const repo = "jakkapan-mak/docs";
-const folder = "IT"; // ✅ เปลี่ยนเป็น IT
+const folder = "IT";
 
 const container = document.getElementById("qpList");
 const countBox = document.getElementById("fileCount");
 
-// ✅ โหลดไฟล์จาก GitHub
+// ✅ หา icon ตามประเภทไฟล์
+function getFileIcon(name){
+  name = name.toLowerCase();
+
+  if(name.endsWith(".pdf")) return "fa-file-pdf";
+  if(name.endsWith(".xlsx") || name.endsWith(".xls")) return "fa-file-excel";
+  if(name.endsWith(".docx") || name.endsWith(".doc")) return "fa-file-word";
+  if(name.endsWith(".ppt") || name.endsWith(".pptx")) return "fa-file-powerpoint";
+  if(name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg")) return "fa-file-image";
+  if(name.endsWith(".zip") || name.endsWith(".rar")) return "fa-file-archive";
+  if(name.endsWith(".txt")) return "fa-file-lines";
+
+  return "fa-file";
+}
+
+// ✅ โหลดไฟล์
 fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
   .then(res => res.json())
   .then(data => {
@@ -132,17 +146,19 @@ fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
     let count = 0;
 
     data
-      .filter(file => file.name.endsWith(".pdf"))
+      .filter(file => file.type === "file" && file.name !== "index.html")
       .forEach(file => {
 
         count++;
 
+        const icon = getFileIcon(file.name);
+
         const card = document.createElement("div");
         card.className = "card";
 
-        card.innerHTML = `
-          <a href="${file.download_url}" target="_/i>
-            ${file.name.replace(".pdf","")}
+        card.innerHTMLurl}
+            <i class="fa-solid ${icon} icon"></i>
+            ${file.name}
           </a>
         `;
 
@@ -150,7 +166,6 @@ fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
       });
 
     countBox.innerText = "📄 จำนวนเอกสารทั้งหมด: " + count + " รายการ";
-
   });
 
 // ✅ Search
@@ -166,10 +181,10 @@ document.getElementById("search").addEventListener("keyup", function () {
   });
 
   document.getElementById("fileCount").innerText =
-    "📄 พบ " + visible + " รายการ";
+    keyword ? "🔍 พบ " + visible + " รายการ" :
+    "📄 จำนวนเอกสารทั้งหมด: " + visible + " รายการ";
 });
 </script>
 
 </body>
 </html>
-
