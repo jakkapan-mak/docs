@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="utf-8">
+<title>IT Documents</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ICON -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+:root{
+  --primary:#1565c0;
+  --accent:#ef6c00;
+}
+
+body{
+  font-family:'Prompt',sans-serif;
+  background:linear-gradient(135deg,#eef3ff,#f9fbff);
+  margin:0;
+  padding:30px 18px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+header{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+header h1{
+  margin-bottom:10px;
+  color:var(--primary);
+}
+
+.search-box input{
+  width:90%;
+  max-width:400px;
+  padding:12px;
+  border-radius:30px;
+  border:1px solid #ccc;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:18px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card a{
+  text-decoration:none;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  color:var(--primary);
+  font-weight:500;
+}
+
+.icon{
+  color:var(--accent);
+  font-size:22px;
+}
+
+.footer{
+  text-align:center;
+  margin-top:40px;
+  font-size:13px;
+  color:#666;
+}
+
+.count{
+  text-align:center;
+  margin-bottom:15px;
+  font-size:14px;
+  color:#555;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h1><i class="fa-solid fa-server"></i> IT Documents</h1>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="🔍 ค้นหาเอกสาร IT...">
+</div>
+</header>
+
+<div class="count" id="fileCount">กำลังโหลด...</div>
+
+<div class="grid" id="qpList"></div>
+
+<div class="footer">IT System - Document Center</div>
+
+</div>
+
+<script>
+const repo = "jakkapan-mak/docs";
+const folder = "IT"; // ✅ เปลี่ยนเป็น IT
+
+const container = document.getElementById("qpList");
+const countBox = document.getElementById("fileCount");
+
+// ✅ โหลดไฟล์จาก GitHub
+fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+  .then(res => res.json())
+  .then(data => {
+
+    let count = 0;
+
+    data
+      .filter(file => file.name.endsWith(".pdf"))
+      .forEach(file => {
+
+        count++;
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <a href="${file.download_url}" target="_/i>
+            ${file.name.replace(".pdf","")}
+          </a>
+        `;
+
+        container.appendChild(card);
+      });
+
+    countBox.innerText = "📄 จำนวนเอกสารทั้งหมด: " + count + " รายการ";
+
+  });
+
+// ✅ Search
+document.getElementById("search").addEventListener("keyup", function () {
+  const keyword = this.value.toLowerCase();
+
+  let visible = 0;
+
+  document.querySelectorAll(".card").forEach(card => {
+    const show = card.innerText.toLowerCase().includes(keyword);
+    card.style.display = show ? "" : "none";
+    if(show) visible++;
+  });
+
+  document.getElementById("fileCount").innerText =
+    "📄 พบ " + visible + " รายการ";
+});
+</script>
+
+</body>
+</html>
 
