@@ -1,5 +1,8 @@
 name: Generate files.json (SAFE)
 
+permissions:
+  contents: write   # ✅ เพิ่มตรงนี้
+
 on:
   push:
     branches:
@@ -17,8 +20,6 @@ jobs:
 
       - name: Generate files.json
         run: |
-          echo "Generating files list..."
-
           find . -type f \
           ! -path "./.git/*" \
           ! -path "./.github/*" \
@@ -28,7 +29,7 @@ jobs:
 
           jq -R . list.txt | jq -s . > files.json
 
-      - name: Commit only if changed ✅ (กัน loop)
+      - name: Commit only if changed
         run: |
           git config --global user.name "auto-bot"
           git config --global user.email "auto@bot.com"
