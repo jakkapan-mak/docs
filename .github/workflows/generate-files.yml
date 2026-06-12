@@ -1,1 +1,35 @@
+name: Auto Generate Files List
 
+on:
+  push:
+    paths:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download code
+        uses: actions/checkout@v3
+
+      - name: Create files.json
+        run: |
+          rm -f files.json
+
+          find . -type f \
+          ! -path "./.git/*" \
+          ! -path "./.github/*" \
+          ! -name "files.json" \
+          ! -name "index.html" \
+          | sed 's|^\./||' > list.txt
+
+          jq -R . list.txt | jq -s . > files.json
+
+      - name: Push files.json
+        run: |
+          git config --global user.name "auto-bot"
+          git config --global user.email "auto@bot.com"
+          git add files.json
+          git commit -m "update files list" || echo "no change"
+          git push
