@@ -135,7 +135,6 @@ footer{
 const container = document.getElementById("qpList");
 const countBox = document.getElementById("fileCount");
 
-// ✅ icon function
 function getIcon(name){
   name = name.toLowerCase();
 
@@ -156,7 +155,6 @@ fetch("../files.json")
 
   files.forEach(path => {
 
-    // ✅ กันทุกเคส
     path = path.trim();
 
     if(!path.toLowerCase().startsWith("test/")) return;
@@ -172,14 +170,12 @@ fetch("../files.json")
     const card = document.createElement("div");
     card.className = "card";
 
- 
-    // ✅ ✅ ✅ จุดนี้แหละทำให้ icon ขึ้น
+    // ✅ ✅ ✅ แก้ถูกแล้วตรงนี้
     card.innerHTML = `
-  <a href="${file.download_url}" target="_blank">
-    <i class="fa-solid ${getIcon(file.name)} icon"></i>
-    ${file.name.replace(/\.[^/.]+$/, "")}
-  </a>
-`;
+      <a href="${fileURL}" target="fa-solid ${getIcon(name)} icon"></i>
+        ${name.replace(/\.[^/.]+$/, "")}
+      </a>
+    `;
 
     container.appendChild(card);
   });
@@ -190,8 +186,8 @@ fetch("../files.json")
   console.error(err);
   countBox.innerText = "❌ โหลดข้อมูลไม่สำเร็จ";
 });
-  
-  // ✅ search
+
+// ✅ search
 document.getElementById("search").addEventListener("keyup", function () {
   const keyword = this.value.toLowerCase();
   let visible = 0;
@@ -206,8 +202,8 @@ document.getElementById("search").addEventListener("keyup", function () {
     keyword ? "🔍 พบ " + visible + " รายการ"
             : "📄 จำนวนทั้งหมด: " + visible + " รายการ";
 });
-  
 </script>
+
   
 </body>
 </html>
