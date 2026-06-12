@@ -1,7 +1,9 @@
-name: Auto Generate Files List
+name: Generate files.json (SAFE)
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '**'
 
@@ -10,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Create files.json
+      - name: Generate files.json
         run: |
-          rm -f files.json
+          echo "Generating files list..."
 
           find . -type f \
           ! -path "./.git/*" \
@@ -26,10 +28,16 @@ jobs:
 
           jq -R . list.txt | jq -s . > files.json
 
-      - name: Push files.json
+      - name: Commit only if changed ✅ (กัน loop)
         run: |
           git config --global user.name "auto-bot"
           git config --global user.email "auto@bot.com"
+
           git add files.json
-          git commit -m "update files list" || echo "no change"
-          git push
+
+          if git diff --cached --quiet; then
+            echo "✅ No changes"
+          else
+            git commit -m "update files.json"
+            git push
+          fi
