@@ -170,11 +170,13 @@ fetch("../files.json")
     const card = document.createElement("div");
     card.className = "card";
 
-    // ✅ ✅ ✅ แก้ถูกแล้วตรงนี้
+    // ✅ ✅ ✅ Icon
     card.innerHTML = `
-      <a href="${fileURL}" target="fa-solid ${getIcon(name)} icon"></i>
-        ${name.replace(/\.[^/.]+$/, "")}
-      </a>
+  <a href="${fileURL}" target="_blank">
+    <i class="fa-solid ${getIcon(name)} icon"></i>
+    ${name.replace(/\.[^/.]+$/, "")}
+  </a>
+
     `;
 
     container.appendChild(card);
